@@ -1,0 +1,36 @@
+First, I just mixed up my asm functions to one big file, so there may be some conflicts
+with label names in the asm file. Dame applies to the clipped.c file.
+
+Notes about the zoom system:
+You just need to set zoomf and zoominv for the functions to be ready, or use another system.
+Note that if you use another system, the coordinates should not be changed the same way also.
+Anyway, the zoom system is made so that zoomf = 1024 would produce no zoom. In that case
+zoominv is also 1024. To zoom in, set zoomf to something less than 1024. zoominv will then
+be higher than 1024.
+
+I hope you will include this in your sdk, so please feel free to contact me in case of problem.
+matkeupon@wanadoo.fr
+
+Some notes about performance:
+I can give you some numbers, that will give you an idea of the speed improvment regarding the
+official free sdk.
+
+So, when you blit 20000 32x32 sprites at 50,50 using:
+Zoom -> 2378 ms
+ZoomTrans -> 2543 ms
+FastTrans -> 1604 ms !!!
+GpTrans -> 2573 ms
+GpBit -> 1159 ms -> that's why I didn't try to make a quicker one
+
+Note that for zoomed blits, the zoom factor was 1024, so the actual drawed size is 32x32.
+In this case, even when zooming on the sprites, it's quicker than the sdk's GpTransBlt.
+
+And, when you blit 20000 16x16 sprites at 50,50 using:
+Zoom -> 630 ms
+ZoomTrans -> 680 ms
+FastTrans -> 418 ms !!!!!!
+GpTrans -> 856 ms (lol)
+GpBit -> 554 ms (again)
+
+As the functions are optimized for 16x16 chunks, the sdk is much slower here. FastTransBlit
+beats the sdk's GpBitblt function, and 32% faster ^^

@@ -1,0 +1,91 @@
+[Project ID]
+Signature=UE Proj: v.1
+[Project Information]
+Filter=*.*
+Project Directory=C:\projects\devkitPro\libmirko\
+Use Relative Directory=1
+Relative to Project File=1
+Project Wordfile=
+Project Tagfile=
+Create Tagfile=0
+Include Sub Directories=0
+[Group]
+0=include
+1=source
+2=
+[Files - include]
+0=include\cpp_prototypes.h
+1=include\fileio.h
+2=include\gp32.h
+3=include\sbox.h
+4=include\sprite.h
+5=include\zda.h
+6=source\addon\zlib\include\crc32.h
+7=source\addon\zlib\include\deflate.h
+8=source\addon\zlib\include\inffast.h
+9=source\addon\zlib\include\inffixed.h
+10=source\addon\zlib\include\inflate.h
+11=source\addon\zlib\include\inftrees.h
+12=source\addon\zlib\include\trees.h
+13=source\addon\zlib\include\zconf.h
+14=source\addon\zlib\include\zconf.in.h
+15=source\addon\zlib\include\zlib.h
+16=source\addon\zlib\include\zutil.h
+17=source\lowlevel\chatboard\keydefines.h
+18=source\lowlevel\smfs\smf_buf.h
+19=source\lowlevel\smfs\smf_cmn.h
+20=source\lowlevel\smfs\smf_conf.h
+21=source\lowlevel\smfs\smf_fat.h
+22=source\lowlevel\smfs\smf_io.h
+23=source\lowlevel\smfs\smf_lpt.h
+24=source\lowlevel\sound\modtables.h
+[Files]
+0=Makefile
+[Files - source]
+0=source\addon\asmclip\gp_asmlib.s
+1=source\addon\asmclip\gp_clipped.c
+2=source\addon\sbox\gp_sbox.c
+3=source\addon\zlib\adler32.c
+4=source\addon\zlib\compress.c
+5=source\addon\zlib\crc32.c
+6=source\addon\zlib\deflate.c
+7=source\addon\zlib\example.c
+8=source\addon\zlib\gp_zdaindex.c
+9=source\addon\zlib\gzio.c
+10=source\addon\zlib\infback.c
+11=source\addon\zlib\inffast.c
+12=source\addon\zlib\inflate.c
+13=source\addon\zlib\inftrees.c
+14=source\addon\zlib\minigzip.c
+15=source\addon\zlib\trees.c
+16=source\addon\zlib\uncompr.c
+17=source\addon\zlib\zutil.c
+18=source\lowlevel\chatboard\gp_chatboard.c
+19=source\lowlevel\common\gp_arm.S
+20=source\lowlevel\common\gp_buttons.c
+21=source\lowlevel\common\gp_cpuspeed.c
+22=source\lowlevel\common\gp_grafik.c
+23=source\lowlevel\common\gp_irq.S
+24=source\lowlevel\common\gp_memory.c
+25=source\lowlevel\common\gp_timer.c
+26=source\lowlevel\font\gp_setfont.c
+27=source\lowlevel\grafik\gp_line.c
+28=source\lowlevel\grafik\gp_sprite.c
+29=source\lowlevel\grafik\gp_tiled.c
+30=source\lowlevel\smfs\gp_filesys.c
+31=source\lowlevel\smfs\smf_buf.c
+32=source\lowlevel\smfs\smf_conf.c
+33=source\lowlevel\smfs\smf_fat.c
+34=source\lowlevel\smfs\smf_io.c
+35=source\lowlevel\smfs\smf_lpt.c
+36=source\lowlevel\smfs\smf_read.c
+37=source\lowlevel\smfs\smf_uni.c
+38=source\lowlevel\sound\init1330.c
+39=source\lowlevel\sound\mixermod.c
+40=source\lowlevel\sound\modplayer.c
+[Open Files]
+Open File0=
+Active File Display Mode=-1
+[File View]
+Current Select=Project Files
+Scroll Position=0
