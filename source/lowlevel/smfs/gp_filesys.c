@@ -58,7 +58,7 @@ int smc_dir(char *dirname, DIR *dir_list )   {
         unsigned int size;
         int ent_start=0;
         unsigned int entry=0;
-        int count=0;
+        unsigned int count=0;
         sDIR_ENTRY dent;
 
         if (!(smc_init())) return 0;
@@ -81,7 +81,7 @@ return entry;
 
 int smc_read(char *filename,void *dest,int offset,int size) {
 
-        int err,oflags=1; // OPEN_R
+        int oflags=1; // OPEN_R
         F_HANDLE handle;
         unsigned int read_count;
 
@@ -169,7 +169,6 @@ size_t smc_fread(void *ptr, size_t size, size_t nmemb, GPFILE *stream){
 }
 
 size_t smc_fwrite(void *ptr, size_t size, size_t nmemb, GPFILE *stream){
-   int err=0;
    char *buffer;
    buffer=ptr;
    size = size*nmemb;
