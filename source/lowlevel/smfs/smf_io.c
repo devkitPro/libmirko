@@ -275,6 +275,7 @@ SMP_EXPORT ERR_CODE smpFlashReadPage(udword drv_no, udword addr, ubyte* p_buf, u
 
 	for (i = 0; i < read_size; ++i, ++p_buf)
 	{
+		// FIXME: where is this function suppose to be declared?
 		*p_buf = SM_READ_DATA(drv_no);
 	}
 

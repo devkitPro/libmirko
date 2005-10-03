@@ -59,7 +59,7 @@ static udword s_fatTableIndexCount[MAX_DRIVE];
 static sOPENED_LIST* s_openedFile[MAX_DRIVE] = { NULL, };
 static udword s_fatFlag[MAX_DRIVE];
 static ERR_CODE s_smErr;
-static udword s_cacheSize[MAX_DRIVE];
+//static udword s_cacheSize[MAX_DRIVE];
 static ubyte s_drvName[MAX_DRIVE][MAX_DRIVE_NAME_LEN + 1];
 
 static void (*s_pfCBInserted)(udword);
@@ -87,7 +87,7 @@ static ERR_CODE sm_ExpandClusterSpace(udword drv_no, F_HANDLE handle, udword clu
 static ERR_CODE sm_DeleteFromDirEntry(udword drv_no, F_HANDLE h_dir, const ubyte* long_name);
 static ERR_CODE sm_AddToOpenedFileList(udword drv_no, sOPENED_LIST* p_list);
 static ERR_CODE sm_DeleteFromOpenedFileList(udword drv_no, udword cluster);
-static ERR_CODE sm_WriteCacheToDisk(udword drv_no, sOPENED_LIST* p_list);
+//static ERR_CODE sm_WriteCacheToDisk(udword drv_no, sOPENED_LIST* p_list);
 static ERR_CODE sm_WriteToDisk(udword drv_no, sOPENED_LIST* p_list,     const ubyte* p_buf, udword count);
 static ERR_CODE sm_ReadFromDisk(udword drv_no, sOPENED_LIST* p_list, void* p_buf, udword count, udword* p_read_count);
 static bool     sm_ConvertToFATName(const ubyte* p_name, ubyte* p_short_name);
@@ -130,7 +130,7 @@ SM_EXPORT ERR_CODE smInit(void)
 {
         udword drv_no;
         ubyte name[10];
-        sTIME now;
+        sTIME now = { 0,0,0,0,0,0};
 
         sm_GetTime(&now);
         SM_SRAND(now.sec);
@@ -448,7 +448,7 @@ SM_EXPORT ERR_CODE smReadFile(F_HANDLE h_file, void* p_buf,     udword count, ud
 {
         udword drv_no;
         udword cluster;
-        sOPENED_LIST* p_list;
+        sOPENED_LIST* p_list = NULL;
         udword head_count, tail_count;
         udword remaining_count;
         udword read_result;
@@ -605,7 +605,7 @@ SM_EXPORT ERR_CODE smWriteFile(F_HANDLE h_file, const void* p_buf, udword count)
         udword cluster;
         const ubyte* p_write;
         udword write_count;
-        sOPENED_LIST* p_list;
+        sOPENED_LIST* p_list = NULL;
         udword id;
 
         drv_no = (h_file >> 24) & 0x7f;
@@ -694,7 +694,7 @@ SM_EXPORT ERR_CODE smSeekFile(F_HANDLE h_file, udword seek_mode, dword offset, d
 {
         udword drv_no;
         udword cluster;
-        sOPENED_LIST* p_list;
+        sOPENED_LIST* p_list = NULL;
         udword id;
         udword cluster_size;
 
@@ -825,8 +825,8 @@ SM_EXPORT ERR_CODE smCloseFile(F_HANDLE h_file)
 {
         udword drv_no;
         udword cluster;
-        sOPENED_LIST* p_list;
-        sTIME time_val;
+        sOPENED_LIST* p_list = NULL;
+        sTIME time_val = { 0,0,0,0,0,0};
         ubyte file_info[32];
         udword cluster_no;
         udword offset;
@@ -990,7 +990,7 @@ SM_EXPORT ERR_CODE smFileExtend(F_HANDLE h_file, udword size)
 {
         udword drv_no;
         udword cluster;
-        sOPENED_LIST* p_list;
+        sOPENED_LIST* p_list = NULL;
         udword id;
         udword addedClusterCount;
         udword sectorsPerCluster;
@@ -1019,8 +1019,8 @@ SM_EXPORT ERR_CODE smFileExtend(F_HANDLE h_file, udword size)
         addedClusterCount = (size + clusterSize - 1) / clusterSize - (p_list->size + clusterSize - 1) / clusterSize;
         if (addedClusterCount)
         {
-                udword curEndSector;
-                udword nextEndSector;
+//                udword curEndSector;
+//                udword nextEndSector;
 
                 s_smErr = sm_addClusters(drv_no, cluster, addedClusterCount);
                 if (s_smErr != SM_OK)
@@ -1040,8 +1040,8 @@ SM_EXPORT ERR_CODE smFileExtend(F_HANDLE h_file, udword size)
         }
         else
         {
-                udword curEndSector;
-                udword nextEndSector;
+//                udword curEndSector;
+//                udword nextEndSector;
 
 #if 0   /* file may not have its clusters continously (dalma, 2000.3.15) */
                 curEndSector = s_clusterStartSector[drv_no]     + (cluster - 2) * sectorsPerCluster
@@ -1296,7 +1296,7 @@ SM_EXPORT ERR_CODE smGetListNumDir(const smchar* p_dirname, udword* p_num)
         udword cluster_size;
         udword i, j;
         udword entry_count;
-        udword sector_count;
+//        udword sector_count;
         ubyte* buf;
         ubyte *p_dir_name = (ubyte *)p_dirname;
 
@@ -3754,7 +3754,7 @@ ERR_CODE sm_RemoveFirstBottommostDir(udword drv_no, F_HANDLE h_dir)
         udword cluster;
         udword offset;
         F_HANDLE handle;
-        F_HANDLE h_parent;
+        F_HANDLE h_parent = 0;
         ubyte dir_name[13];
         udword i, k;
         ubyte* buf;
@@ -3946,11 +3946,12 @@ ERR_CODE sm_RemoveFirstBottommostDir(udword drv_no, F_HANDLE h_dir)
 ERR_CODE sm_FindEntryInDirectory(udword drv_no, udword find_mode, F_HANDLE h_parent, udword var_par,
                 ubyte* p_info, udword* p_cluster, udword* p_offset)
 {
-        udword i, j;
+//        udword i;
+        udword j;
         ubyte short_name[13];
         uword* p_unicode = NULL;
         uword* p_unicode_read = NULL;
-        int     unicode_name_len;
+        int     unicode_name_len = 0;
         ubyte* buf;
         udword offset;
         udword cluster_size;
@@ -3959,11 +3960,11 @@ ERR_CODE sm_FindEntryInDirectory(udword drv_no, udword find_mode, F_HANDLE h_par
         udword cur_offset;
         uword end_cluster;
         uword old_cluster;
-        udword sector_count;
+//        udword sector_count;
         udword index = 0;
-        udword index_after_tilde;
-        udword sector_num;
-        udword sector_offset;
+        udword index_after_tilde = 0;
+//        udword sector_num;
+//        udword sector_offset;
         udword max_offset;
 
         cluster_size = s_smInfo[drv_no].pbr.bpb.sectors_per_cluster     * SECTOR_SIZE;
@@ -4332,14 +4333,14 @@ ERR_CODE sm_AddToDirEntry(udword drv_no, F_HANDLE h_dir, const ubyte* long_name,
         ubyte fat_name[13];
         udword new_cluster;
         udword new_offset;
-        udword empty_cluster;
-        udword len;
+        udword empty_cluster = 0;
+        udword len = 0;
         udword entry_count;
         udword buf_size;
         udword offset_short_name;
         ubyte checksum;
         udword i, j, k;
-        udword b_found_deleted_cluster;
+//        udword b_found_deleted_cluster;
         udword write_cluster;
         udword write_offset;
         udword first_copy_size;
@@ -4775,9 +4776,9 @@ ERR_CODE sm_ExpandClusterSpace(udword drv_no, F_HANDLE handle, udword cluster, u
         udword new_offset;
         ubyte dummy_info[32];
         ubyte* buf;
-        udword empty_cluster;
+        udword empty_cluster = 0;
         udword first_copy_size;
-        udword i;
+//        udword i;
         udword next_cluster;
         udword next_offset;
         udword proc_cluster;
@@ -6211,7 +6212,7 @@ udword sm_searchCluster(udword drv_no, udword count, udword* maxCount)
         uword i;
         uword curCount;
         sBPB* bpb = &s_smInfo[drv_no].pbr.bpb;
-        udword rv;
+        udword rv = 0;
         udword maxNum = 0;
 
         totalClusters = (uword)(bpb->total_sectors / bpb->sectors_per_cluster);

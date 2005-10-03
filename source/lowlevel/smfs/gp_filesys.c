@@ -102,13 +102,16 @@ return read_count;
 
 int smc_write(char *filename,void *dest,int size) {
 
-        F_HANDLE handle;
-        int fcreate_mode=1;  // ALWAYS_CREATE
+	F_HANDLE handle;
+	int fcreate_mode=1;  // ALWAYS_CREATE
 
-        if (!(smc_init())) return 0;
-        smCreateFile(filename, fcreate_mode, &handle);
-        smWriteFile(handle, dest, size);
-        smCloseFile(handle);
+	if (!(smc_init())) return 0;
+
+	smCreateFile(filename, fcreate_mode, &handle);
+	smWriteFile(handle, dest, size);
+	smCloseFile(handle);
+
+	return 0;	
 }
 
 int smc_createdir(char *dirname) {
