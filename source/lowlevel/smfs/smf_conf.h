@@ -473,7 +473,7 @@ extern int sm_ConvertStrToUnicode(unsigned short *des, unsigned char *src, int l
 
 	#define SM_WRITE_DATA(drv_no, data)		{ rPBDAT = (rPBDAT & 0xff00) | data; rPEDAT &=~ 0x08; rPEDAT |= 0x08; }
 
-	// #define SM_READ_DATA(drv_no)			({unsigned char data; rPDDAT &=~ 0x100; data = (rPBDAT & 0xFF); rPDDAT |= 0x100; data; })
+	#define SM_READ_DATA(drv_no)			({unsigned char data; rPDDAT &=~ 0x100; data = (rPBDAT & 0xFF); rPDDAT |= 0x100; data; })
 
 
 	#define SM_WRITE_CMD(drv_no, cmd)		SM_WRITE_DATA(drv_no, cmd)

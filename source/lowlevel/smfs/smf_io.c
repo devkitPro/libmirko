@@ -11,7 +11,6 @@
  * Modified by Lee Jin Woo (1999/08/17)
  *
  **********/
-
 #include "smf_cmn.h"
 #include "smf_io.h"
 #include "smf_lpt.h"
