@@ -24,7 +24,7 @@ INCLUDES	:=	include \
 
 DATESTRING	:=	$(shell date +%Y)$(shell date +%m)$(shell date +%d)
 
-VERSION		:=	0.9.5
+VERSION		:=	0.9.6
 
 ARCH	:=	-marm
 
@@ -81,7 +81,7 @@ dist: $(BUILD)
 
 install: dist
 	mkdir -p $(DEVKITPRO)/libmirko
-	bzip2 -cd libmirko-$(DATESTRING).tar.bz2 | tar -xv -C $(DEVKITPRO)/libgba
+	bzip2 -cd libmirko-$(VERSION).tar.bz2 | tar -xv -C $(DEVKITPRO)/libmirko
 
 
 #---------------------------------------------------------------------------------

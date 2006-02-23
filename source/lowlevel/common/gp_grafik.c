@@ -31,7 +31,7 @@
 
 #include "gp32.h"
 
-volatile char _SDKVERSION[]="- SDK 0.95 ,copyright 2005 by Mirko Roller  mirko@mirkoroller.de -";
+volatile char _SDKVERSION[]="- SDK 0.96 ,copyright 2005 by Mirko Roller  mirko@mirkoroller.de -";
 
 static
 void gp_waitVsync() {
