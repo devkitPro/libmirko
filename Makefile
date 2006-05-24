@@ -42,7 +42,7 @@ export PATH	:=	$(DEVKITARM)/bin:$(PATH)
 #---------------------------------------------------------------------------------
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 
-export MIRKO	:=	$(CURDIR)/lib/libmirko.a
+export MIRKO	:=	$(CURDIR)/lib/libmirkoSDK.a
 export ADDON	:=	$(CURDIR)/lib/libaddon.a
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir))
