@@ -21,10 +21,7 @@ SOURCES		:=	source/lowlevel/chatboard \
 INCLUDES	:=	include \
 			source/addon/zlib/include
 
-
-DATESTRING	:=	$(shell date +%Y)$(shell date +%m)$(shell date +%d)
-
-VERSION		:=	0.9.6
+VERSION		:=	0.9.7
 
 ARCH	:=	-marm
 
@@ -55,7 +52,9 @@ export	LIBMIRKOFILES	:=	gp_chatboard.o \
 				gp_8x8font.o gp_setfont.o \
 				gp_line.o gp_sprite.o gp_tiled.o \
 				mixermod.o modplayer.o \
-				gp_filesys.o smf_buf.o smf_conf.o smf_fat.o smf_io.o
+				gp_filesys.o \
+				smf_buf.o smf_conf.o smf_fat.o smf_io.o \
+				smf_lpt.o smf_uni.o
 
 export LIBADDONFILES	:=	gp_asmlib.o gp_clipped.o \
 				gp_sbox.o \
@@ -68,7 +67,7 @@ export LIBADDONFILES	:=	gp_asmlib.o gp_clipped.o \
 $(BUILD):
 	@[ -d lib ] || mkdir -p lib
 	@[ -d $@ ] || mkdir -p $@
-	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
 
 clean:
