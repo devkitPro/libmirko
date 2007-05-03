@@ -21,7 +21,7 @@ SOURCES		:=	source/lowlevel/chatboard \
 INCLUDES	:=	include \
 			source/addon/zlib/include
 
-VERSION		:=	0.9.7
+VERSION		:=	0.9.8
 
 ARCH	:=	-marm
 
@@ -80,7 +80,7 @@ dist: $(BUILD)
 
 install: dist
 	mkdir -p $(DEVKITPRO)/libmirko
-	bzip2 -cd libmirko-$(VERSION).tar.bz2 | tar -xv -C $(DEVKITPRO)/libmirko
+	bzip2 -cd libmirko-$(VERSION).tar.bz2 | tar -xvf - -C $(DEVKITPRO)/libmirko
 
 
 #---------------------------------------------------------------------------------
