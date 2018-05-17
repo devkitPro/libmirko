@@ -79,8 +79,8 @@ dist: $(BUILD)
 	@tar --exclude=*CVS* -cvjf libmirko-$(VERSION).tar.bz2 include lib license.txt
 
 install: dist
-	mkdir -p $(DEVKITPRO)/libmirko
-	bzip2 -cd libmirko-$(VERSION).tar.bz2 | tar -xvf - -C $(DEVKITPRO)/libmirko
+	mkdir -p $(DESTDIR)$(DEVKITPRO)/libmirko
+	bzip2 -cd libmirko-$(VERSION).tar.bz2 | tar -xvf - -C $(DESTDIR)$(DEVKITPRO)/libmirko
 
 
 #---------------------------------------------------------------------------------
